@@ -86,7 +86,7 @@ window.onload = function(){
 	//set_event_listeners(list_items,'click');
 	var h=function(e){console.log(e.type,e)};
 
-	detectswipe('li',myfunction);
+	detectswipe('chess',myfunction);
 
 
 };
