@@ -47,7 +47,7 @@ function detectswipe(el,func) {
 	},false);
 }
 
-myfunction(el,d) {
+function myfunction(el,d){
 	alert("you swiped on element with id '"+el+"' to "+d+" direction");
 }
 
