@@ -49,7 +49,7 @@ window.onload = function(){
 
 	//get all the list items
 	list_items = update_element_array('li');
-	set_event_listeners(list_items,'touchstart');
+	//set_event_listeners(list_items,'touchstart');
 	//set_event_listeners(list_items,'click');
 	var h=function(e){console.log(e.type,e)};
 	set_event_listeners('swl',h,false);
