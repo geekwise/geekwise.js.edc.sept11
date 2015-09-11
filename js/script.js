@@ -5,6 +5,19 @@ function update_element_array(element_tag_name){
 	return element_array;
 }
 
+function swipe_element(){
+	(function(d){
+		var
+			ce=function(e,n){var a=document.createEvent("CustomEvent");a.initCustomEvent(n,true,true,e.target);e.target.dispatchEvent(a);a=null;return false},
+			nm=true,sp={x:0,y:0},ep={x:0,y:0},
+			touch={
+				touchstart:function(e){sp={x:e.touches[0].pageX,y:e.touches[0].pageY}},
+				touchmove:function(e){nm=false;ep={x:e.touches[0].pageX,y:e.touches[0].pageY}},
+				touchend:function(e){if(nm){ce(e,'fc')}else{var x=ep.x-sp.x,xr=Math.abs(x),y=ep.y-sp.y,yr=Math.abs(y);if(Math.max(xr,yr)>20){ce(e,(xr>yr?(x<0?'swl':'swr'):(y<0?'swu':'swd')))}};nm=true},
+				touchcancel:function(e){nm=false}
+			};
+		for(var a in touch){d.addEventListener(a,touch[a],false);}
+	})(document)};
 
 function set_event_listeners(element_array,event_type){
 
@@ -37,5 +50,7 @@ window.onload = function(){
 	//get all the list items
 	list_items = update_element_array('li');
 	set_event_listeners(list_items,'touchstart');
-	set_event_listeners(list_items,'click');
+	//set_event_listeners(list_items,'click');
+	var h=function(e){console.log(e.type,e)};
+	set_event_listeners('swl',h,false);
 };
