@@ -5,19 +5,52 @@ function update_element_array(element_tag_name){
 	return element_array;
 }
 
-function swipe_element(){
-	(function(d){
-		var
-			ce=function(e,n){var a=document.createEvent("CustomEvent");a.initCustomEvent(n,true,true,e.target);e.target.dispatchEvent(a);a=null;return false},
-			nm=true,sp={x:0,y:0},ep={x:0,y:0},
-			touch={
-				touchstart:function(e){sp={x:e.touches[0].pageX,y:e.touches[0].pageY}},
-				touchmove:function(e){nm=false;ep={x:e.touches[0].pageX,y:e.touches[0].pageY}},
-				touchend:function(e){if(nm){ce(e,'fc')}else{var x=ep.x-sp.x,xr=Math.abs(x),y=ep.y-sp.y,yr=Math.abs(y);if(Math.max(xr,yr)>20){ce(e,(xr>yr?(x<0?'swl':'swr'):(y<0?'swu':'swd')))}};nm=true},
-				touchcancel:function(e){nm=false}
-			};
-		for(var a in touch){d.addEventListener(a,touch[a],false);}
-	})(document)};
+function detectswipe(el,func) {
+	swipe_det = new Object();
+	swipe_det.sX = 0;
+	swipe_det.sY = 0;
+	swipe_det.eX = 0;
+	swipe_det.eY = 0;
+	var min_x = 20;  //min x swipe for horizontal swipe
+	var max_x = 40;  //max x difference for vertical swipe
+	var min_y = 40;  //min y swipe for vertical swipe
+	var max_y = 50;  //max y difference for horizontal swipe
+	var direc = "";
+	ele = document.getElementById(el);
+	ele.addEventListener('touchstart',function(e){
+		var t = e.touches[0];
+		swipe_det.sX = t.screenX;
+		swipe_det.sY = t.screenY;
+	},false);
+	ele.addEventListener('touchmove',function(e){
+		e.preventDefault();
+		var t = e.touches[0];
+		swipe_det.eX = t.screenX;
+		swipe_det.eY = t.screenY;
+	},false);
+	ele.addEventListener('touchend',function(e){
+		//horizontal detection
+		if ((((swipe_det.eX - min_x > swipe_det.sX) || (swipe_det.eX + min_x < swipe_det.sX)) && ((swipe_det.eY < swipe_det.sY + max_y) && (swipe_det.sY > swipe_det.eY - max_y)))) {
+			if(swipe_det.eX > swipe_det.sX) direc = "r";
+			else direc = "l";
+		}
+		//vertical detection
+		if ((((swipe_det.eY - min_y > swipe_det.sY) || (swipe_det.eY + min_y < swipe_det.sY)) && ((swipe_det.eX < swipe_det.sX + max_x) && (swipe_det.sX > swipe_det.eX - max_x)))) {
+			if(swipe_det.eY > swipe_det.sY) direc = "d";
+			else direc = "u";
+		}
+
+		if (direc != "") {
+			if(typeof func == 'function') func(el,direc);
+		}
+		direc = "";
+	},false);
+}
+
+myfunction(el,d) {
+	alert("you swiped on element with id '"+el+"' to "+d+" direction");
+}
+
 
 function set_event_listeners(element_array,event_type){
 
@@ -52,5 +85,8 @@ window.onload = function(){
 	//set_event_listeners(list_items,'touchstart');
 	//set_event_listeners(list_items,'click');
 	var h=function(e){console.log(e.type,e)};
-	set_event_listeners('swl',h,false);
+
+	detectswipe('li',myfunction);
+
+
 };
