@@ -37,4 +37,5 @@ window.onload = function(){
 	//get all the list items
 	list_items = update_element_array('li');
 	set_event_listeners(list_items,'touchstart');
+	set_event_listeners(list_items,'click');
 };
