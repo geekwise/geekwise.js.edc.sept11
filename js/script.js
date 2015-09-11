@@ -11,10 +11,10 @@ function detectswipe(el,func) {
 	swipe_det.sY = 0;
 	swipe_det.eX = 0;
 	swipe_det.eY = 0;
-	var min_x = 50;  //min x swipe for horizontal swipe
+	var min_x = 25;  //min x swipe for horizontal swipe
 	var max_x = 40;  //max x difference for vertical swipe
 	var min_y = 40;  //min y swipe for vertical swipe
-	var max_y = 100;  //max y difference for horizontal swipe
+	var max_y = 60;  //max y difference for horizontal swipe
 	var direc = "";
 	ele = document.getElementById(el);
 	ele.addEventListener('touchstart',function(e){
