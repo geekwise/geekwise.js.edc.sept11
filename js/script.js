@@ -60,8 +60,9 @@ function set_event_listeners(element_array,event_type){
 };
 
 
-function set_random_color_for_list_item(){
-	this.style.backgroundColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+function set_random_color_for_list_item(element_id){
+	var current_element = document.getElementById(element_id);
+	current_element.style.backgroundColor = '#'+Math.floor(Math.random()*16777215).toString(16);
 }
 
 
@@ -87,9 +88,9 @@ window.onload = function(){
 	//set_event_listeners(list_items,'click');
 	var h=function(e){console.log(e.type,e)};
 
-	detectswipe('chess',set_random_color_for_list_item());
-	detectswipe('poker',set_random_color_for_list_item());
-	detectswipe('scrabble',set_random_color_for_list_item());
+	detectswipe('chess',set_random_color_for_list_item('chess'));
+	detectswipe('poker',set_random_color_for_list_item('poker'));
+	detectswipe('scrabble',set_random_color_for_list_item('scrabble'));
 
 
 };
