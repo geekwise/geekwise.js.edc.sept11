@@ -1,0 +1,124 @@
+* {
+  font-family: sans-serif;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+#name_input_box {
+  margin: 0 0 0 40px;
+  padding: 0;
+  width: 400px;
+  height: 15px;
+}
+
+ul {
+  list-style: none;
+  width: 502px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  background-color: black;
+  padding: 1px;
+}
+
+li {
+  height: 60px;
+  width: 500px;
+  border: 1px solid black;
+  text-align: center;
+  line-height: 60px;
+  font-size: 30px;
+  font-weight: 700;
+  box-sizing: border-box;
+  background-color: #efefef;
+  transition: all 0.3s;
+  border-radius: 3px;
+}
+
+li:nth-of-type(1) {
+  background-color: gray;
+}
+
+li:hover {
+  background-color: #737373;
+}
+
+.closed {
+  background-color: #b6b6b6;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+}
+
+.open {
+  background-color: #b6b6b6;
+  height: 225px;
+  overflow: hidden;
+  border: 2px solid black;
+  line-height: normal;
+  text-align: center;
+  padding: 10px;
+}
+.open button {
+  height: 30px;
+  padding: 10px 20px;
+  font-size: 15px;
+  line-height: 7px;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+.open button:hover {
+  background-color: #b6b6b6;
+}
+.open #name_input_box, .open #picture_input_box {
+  border: 1px solid black;
+  height: 30px;
+  width: 99%;
+  margin: 5px auto;
+  border-radius: 5px;
+}
+.minus{
+	float:left;
+	height: 100%;
+	width: 60px;
+  font-size: 130%;
+}
+
+@media screen and (max-width: 1000px){
+  ul {
+    width: 100%;
+  }
+  li {
+    width: 100%;
+    height: 100px;
+    font-size: 50px;
+    line-height: 100px;
+  }
+  .open {
+    height: 400px;
+  }
+  .open button {
+  height: 40px;
+  padding: 15px 25px;
+  font-size: 20px;
+  line-height: 10px;
+  border-radius: 10px;
+  border: 1px solid black;
+  }
+}
+p{
+	margin:0;
+	padding:0;
+}
+#name_input_box{
+	margin:0 0 0 40px;
+	padding:0;
+	width: 400px;
+	height:15px;
+}
+
+
+
+
