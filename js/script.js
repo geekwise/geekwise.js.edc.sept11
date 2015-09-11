@@ -6,10 +6,10 @@ function update_element_array(element_tag_name){
 }
 
 
-function set_event_listeners(element_array){
+function set_event_listeners(element_array,event_type){
 
 	for(i=0;i<element_array.length;i++){
-		element_array[i].addEventListener('click',function(){
+		element_array[i].addEventListener(event_type,function(){
 
 			alert(this);
 		});
@@ -36,5 +36,5 @@ window.onload = function(){
 
 	//get all the list items
 	list_items = update_element_array('li');
-	set_event_listeners(list_items);
+	set_event_listeners(list_items,'touchstart');
 };
