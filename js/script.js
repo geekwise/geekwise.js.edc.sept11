@@ -11,7 +11,7 @@ function set_event_listeners(element_array,event_type){
 	for(i=0;i<element_array.length;i++){
 		element_array[i].addEventListener(event_type,function(){
 
-			this.style.backgroundColor = '#fafafa'
+			this.style.backgroundColor = '#'+Math.floor(Math.random()*16777215).toString(16);
 		});
 	}
 };
