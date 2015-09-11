@@ -11,10 +11,10 @@ function detectswipe(el,func) {
 	swipe_det.sY = 0;
 	swipe_det.eX = 0;
 	swipe_det.eY = 0;
-	var min_x = 20;  //min x swipe for horizontal swipe
+	var min_x = 50;  //min x swipe for horizontal swipe
 	var max_x = 40;  //max x difference for vertical swipe
 	var min_y = 40;  //min y swipe for vertical swipe
-	var max_y = 50;  //max y difference for horizontal swipe
+	var max_y = 100;  //max y difference for horizontal swipe
 	var direc = "";
 	ele = document.getElementById(el);
 	ele.addEventListener('touchstart',function(e){
@@ -47,9 +47,6 @@ function detectswipe(el,func) {
 	},false);
 }
 
-function myfunction(el,d){
-	alert("you swiped on element with id '"+el+"' to "+d+" direction");
-}
 
 
 function set_event_listeners(element_array,event_type){
@@ -62,6 +59,10 @@ function set_event_listeners(element_array,event_type){
 	}
 };
 
+
+function set_random_color_for_list_item(){
+	this.style.backgroundColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+}
 
 
 document.addEventListener('DOMContentLoaded',function(){
@@ -86,7 +87,9 @@ window.onload = function(){
 	//set_event_listeners(list_items,'click');
 	var h=function(e){console.log(e.type,e)};
 
-	detectswipe('chess',myfunction);
+	detectswipe('chess',set_random_color_for_list_item());
+	detectswipe('poker',set_random_color_for_list_item());
+	detectswipe('scrabble',set_random_color_for_list_item());
 
 
 };
